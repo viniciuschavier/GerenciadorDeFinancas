@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login & Cadastro - Gerenciador de Finanças</title>
+  <link rel="stylesheet" href="auth.css" />
+</head>
+<body>
+  <div class="container" id="container">
+    <!-- Cadastro -->
+    <div class="form-container sign-up-container">
+      <form id="register-form">
+        <h1>Criar Conta</h1>
+        <input type="text" placeholder="Username" id="register-name" class="input-underline" required />
+        <input type="email" placeholder="Email" id="register-email" class="input-underline" required />
+        <input type="password" placeholder="Senha" id="register-password" class="input-underline" required />
+        <button type="submit" class="submit">Cadastrar</button>
+      </form>
+    </div>
+
+    <!-- Login -->
+    <div class="form-container sign-in-container">
+      <form id="login-form">
+        <h1>Entrar</h1>
+        <input type="email" placeholder="Email" class="input-underline" id="login-email" required />
+        <input type="password" placeholder="Senha" class="input-underline" id="login-password" required />
+        <button type="submit" class="submit">Login</button>
+      </form>
+    </div>
+
+    <!-- Painel deslizante -->
+    <div class="overlay-container">
+      <div class="overlay">
+        <div class="overlay-panel overlay-left">
+          <h1>Bem-vindo de volta!</h1>
+          <p>Já possui conta? Faça login para continuar.</p>
+          <button class="ghost" id="signIn">Login</button>
+        </div>
+        <div class="overlay-panel overlay-right">
+          <h1>Olá!</h1>
+          <p>Não possui conta? Crie sua conta e comece a gerenciar suas finanças.</p>
+          <button class="ghost" id="signUp">Cadastrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="auth.js"></script>
+</body>
+</html>

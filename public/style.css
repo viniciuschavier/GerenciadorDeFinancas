@@ -6,13 +6,13 @@
 }
 
 body{
-  background-color: rgb(33, 37, 41);
-  color: white;
+  background-color: #151b23;
+  color: #E0E6ED;
   font-family:  "Poppins", sans-serif;
 }
 
 .container{
-  margin-top: 50px;
+  margin-top: 150px;
 }
 
 h2 {
@@ -54,7 +54,7 @@ span {
 button {
   background-color: #6bf394;
   border: 0;
-  border-radius: .25rem;
+  border-radius: 20px;
   font-size: .9rem;
   padding: .5rem 1rem;
   margin: 2px 5px;
@@ -63,6 +63,17 @@ button {
 button:hover {
   cursor: pointer;
   filter: brightness(0.9);
+}
+
+button.btn {
+  color: #fff;
+  transition: all 0.3s ease-in-out;
+  width: 50%;
+  padding: 10px;
+}
+
+.col{
+  margin: 0px 25px;
 }
 
 .transaction > span {
@@ -91,9 +102,37 @@ button:hover {
   background-color: #f64348;
 }
 
-form {
+.form {
   display: flex;
   flex-direction: column;
+  background-color: #151a23;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #1e2a38;
+}
+
+
+.input-underline {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid #6ca0f6;
+  outline: none;
+  padding: 0.5rem;
+  font-size: 20px;
+  margin: 20px 0px;
+  color: #fff;
+  width: 80%;
+}
+
+.input-underline::placeholder {
+  color: #fff;
+  font-size: 20px;
+  transition: all 0.3s ease;
+}
+
+.input-underline:focus {
+  border-bottom: 2px solid #3B9CFF;
+  box-shadow: 0 1px 0 0 #4a90e2;
 }
 
 .form-control, .btn{
@@ -101,8 +140,9 @@ form {
   width: 70%;
 }
 
-.checkbox{
+.checkbox {
   display: inline-block;
+  margin: 15px 0px;
 }
 
 body::-webkit-scrollbar {
@@ -122,5 +162,9 @@ body::-webkit-scrollbar-thumb{
 
   #titleTransaction{
     margin-top: 100px;
+  }
+
+  .col {
+    margin: 0px;
   }
 }

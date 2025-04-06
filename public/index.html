@@ -11,15 +11,12 @@
   <div class="container text-center" data-bs-theme="dark">
     <div class="row">
       <div class="col">
-        <form action="http://localhost:3000/transitions" method="post">
+        <div class="form">
           <h2>Nova Transação</h2>
-          <input type="hidden" id="id" name="id">
-          <label for="name">Nome da Transação:</label>
-          <input class="form-control" type="text" name="name" id="name">
-          
-          <label for="amount">Valor da Transação:</label>
-          <input class="form-control" type="number" name="amount" id="amount" min="0" oninput="validity.valid||(value='');">
-          
+            <div class="input-transacao">
+              <input type="text" placeholder="Nome da Transação" id="nomeTransacao" class="input-underline" required />
+              <input class="input-underline" type="number" placeholder="Valor da Transação" name="amount" id="amount" min="0" oninput="validity.valid||(value='');">
+            </div>
           <div class="checkbox">
             <div class="form-check form-check-inline">
               <input class="form-check-input" type="radio" name="inlineRadioOptions" id="entrada" value="option1">
@@ -30,15 +27,16 @@
               <label class="form-check-label labelSaida" for="inlineRadio2">Saída</label>
             </div>
           </div>
-    
           <button type="submit" class="btn btn-outline-primary">Salvar</button>
-        </form>
+        </div>
       </div>
       <div class="col">
-        <h2 id="titleTransaction">Transações</h2>
-        <p>SALDO: <span id="balance"></span></p>
-        <hr>
-        <section id="transitions"></section>
+        <div class="secao-transacao">
+          <h2 id="titleTransaction">Transações</h2>
+          <p>SALDO: <span id="balance"></span></p>
+          <hr>
+          <section id="transitions"></section>
+        </div> 
       </div>
     </div>
   </div>
