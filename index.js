@@ -2,11 +2,12 @@
 // Se não estiver, redireciona para a página de login
 const sessao = JSON.parse(localStorage.getItem('sessao'));
 const token = sessao?.token
+const user_id = sessao.id
 
 if (!token) {
   window.location.href = '../auth/auth.html';
 } else {
-  fetch('http://localhost:3000/verificarAutenticacao', {
+  fetch('http://localhost:3000/auth/verificarAutenticacao', {
     headers: { 'Authorization': `Bearer ${token}` }
   })
   .then(res => res.json())
@@ -129,13 +130,16 @@ form.addEventListener('submit', async (ev) => {
 
   let checkEntrada = false
   let checkSaida = false
+  let type
 
   if(entrada.checked){
     checkEntrada = true
+    type = "Entrada"
   }else{
     let converterNegativo = amount * 2
     amount -= converterNegativo
     checkSaida = true
+    type = "Saida"
   }
 
   if (id){
@@ -156,7 +160,7 @@ form.addEventListener('submit', async (ev) => {
   } else {
     const response = await fetch('http://localhost:3000/transactions', {
     method: 'POST',
-    body: JSON.stringify({ name, amount, checkEntrada, checkSaida }),
+    body: JSON.stringify({ user_id, name, type, amount }),
     headers: {
       'Content-Type': 'application/json'
     }

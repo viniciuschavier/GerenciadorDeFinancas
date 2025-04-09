@@ -16,7 +16,7 @@ document.getElementById('register-form').addEventListener('submit', async (e) =>
   const email = document.getElementById('register-email').value;
   const password = document.getElementById('register-password').value;
 
-  const response = await fetch('http://localhost:3000/cadastro', {
+  const response = await fetch('http://localhost:3000/auth/cadastro', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ username, email, password }),
@@ -43,7 +43,7 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
   const username = document.getElementById('login-username').value;
   const password = document.getElementById('login-password').value;
 
-  const response = await fetch('http://localhost:3000/login', {
+  const response = await fetch('http://localhost:3000/auth/login', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ username, password }),
