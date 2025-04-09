@@ -1,3 +1,32 @@
+// Verifica se o usuario está autenticado
+// Se não estiver, redireciona para a página de login
+const sessao = JSON.parse(localStorage.getItem('sessao'));
+const token = sessao?.token
+
+if (!token) {
+  window.location.href = '../auth/auth.html';
+} else {
+  fetch('http://localhost:3000/verificarAutenticacao', {
+    headers: { 'Authorization': `Bearer ${token}` }
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.usuario) {
+      document.getElementById('boasVindas').innerText = `Olá, ${data.usuario.username}`;
+    } else {
+      alert('Sessão expirada');
+      localStorage.removeItem('sessao');
+      window.location.href = 'index.html';
+    }
+  });
+}
+
+// Função para fazer logout do usuario
+document.getElementById('logoutBtn').addEventListener('click', () => {
+  localStorage.removeItem('sessao');
+  window.location.href = '../auth/auth.html';
+});
+
 let transactions = []
 
 function createTransactionContainer(id){
@@ -147,3 +176,4 @@ async function setup(){
   transactions.forEach(renderTransaction)
   updateBalance()
 }
+

@@ -59,6 +59,19 @@ h1, p{
   z-index: 1;
 }
 
+/* Alertas personalizados para tema escuro */
+.alert-dark-success {
+  background-color: #157347cc; /* verde escuro com transparência */
+  color: #fff;
+  border: 1px solid #157347;
+}
+
+.alert-dark-danger {
+  background-color: #bb2d3bcc; /* vermelho escuro com transparência */
+  color: #fff;
+  border: 1px solid #bb2d3b;
+}
+
 .container.right-panel-active .sign-in-container {
   transform: translateX(100%);
   opacity: 0;
@@ -189,4 +202,53 @@ button.ghost:hover {
 
 .container.right-panel-active .overlay-right {
   transform: translateX(20%);
+}
+
+.container.mobile-mode {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  width: 90%;
+  max-width: 450px;
+}
+
+.container.mobile-mode .form-container {
+  position: static;
+  width: 100%;
+  opacity: 1 !important;
+  transform: none !important;
+  z-index: auto;
+  display: none;
+}
+
+.container.mobile-mode .form-container.active {
+  display: flex;
+}
+
+.container.mobile-mode .overlay-container {
+  display: none;
+}
+
+/* Troca mobile */
+.switch-mobile {
+  display: none;
+  margin-top: 10px;
+  font-size: 15px;
+  color: #ccc;
+}
+
+.switch-mobile a {
+  color: #0A84FF;
+  text-decoration: none;
+}
+
+.switch-mobile a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 868px) {
+  .switch-mobile {
+    display: block;
+  }
 }

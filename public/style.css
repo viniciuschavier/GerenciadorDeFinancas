@@ -9,6 +9,26 @@ body{
   background-color: #151b23;
   color: #E0E6ED;
   font-family:  "Poppins", sans-serif;
+  height: 100vh;
+}
+
+.navbar {
+  border-bottom: 1px solid #0d6efd55;
+}
+
+span#boasVindas {
+  font-size: 17px;
+  margin: 0px;
+  min-width: 100px;
+}
+
+button#logoutBtn {
+  width: 80px;
+}
+
+#logoutBtn:hover {
+  background-color: #0d6efd;
+  color: white;
 }
 
 .container{
@@ -111,7 +131,6 @@ button.btn {
   box-shadow: 0 0 10px #1e2a38;
 }
 
-
 .input-underline {
   background: transparent;
   border: none;
@@ -156,6 +175,10 @@ body::-webkit-scrollbar-thumb{
 }
 
 @media (max-width: 1200px){
+  .container{
+    margin-top: 70px;
+  }
+
   .row {
     flex-direction: column;
   }
