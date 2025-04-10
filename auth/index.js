@@ -4,7 +4,7 @@ const sessao = JSON.parse(localStorage.getItem('sessao'));
 const token = sessao?.token
 
 if (!token) {
-  window.location.href = '../auth/auth.html';
+  window.location.href = '../public/auth.html';
 } else {
   fetch('http://localhost:3000/auth/verificarAutenticacao', {
     headers: { 'Authorization': `Bearer ${token}` }
@@ -24,7 +24,7 @@ if (!token) {
 // Função para fazer logout do usuario
 document.getElementById('logoutBtn').addEventListener('click', () => {
   localStorage.removeItem('sessao');
-  window.location.href = '../auth/auth.html';
+  window.location.href = '../public/auth.html';
 });
 
 let transactions = []

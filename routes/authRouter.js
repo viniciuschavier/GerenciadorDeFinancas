@@ -53,7 +53,7 @@ authRouter.post('/login', async (req, res) => {
 
   const token = jwt.sign({ id: data.id, username: data.username }, jwt_secret, { expiresIn: '2h' });
 
-  res.json({ message: 'Login realizado com sucesso!', redirect:'/public/index.html', token });
+  res.json({ message: 'Login realizado com sucesso!', redirect:'/auth/index.html', token });
 });
 
 //Rota para verificar a autenticacao do usuario
