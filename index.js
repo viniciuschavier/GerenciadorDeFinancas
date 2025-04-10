@@ -2,7 +2,6 @@
 // Se não estiver, redireciona para a página de login
 const sessao = JSON.parse(localStorage.getItem('sessao'));
 const token = sessao?.token
-const user_id = sessao.id
 
 if (!token) {
   window.location.href = '../auth/auth.html';
@@ -32,7 +31,7 @@ let transactions = []
 
 function createTransactionContainer(id){
   const div = document.createElement('div')
-  div.id = `transaction-${id}`
+  div.id = id
   div.classList.add('transaction')
   return div
 }
@@ -63,7 +62,7 @@ function createEditTransactionButton(transaction){
   editBtn.textContent = 'Editar'
   editBtn.addEventListener('click', () => {
     document.querySelector('#id').value = transaction.id
-    document.querySelector('#name').value = transaction.name
+    document.querySelector('#nomeTransacao').value = transaction.name
     
     if (transaction.amount < 0) {
       let copyAmountValue = transaction.amount
@@ -73,7 +72,6 @@ function createEditTransactionButton(transaction){
     } else {
       document.querySelector('#amount').value = transaction.amount
     }
-    
   })
   return editBtn
 }
@@ -111,20 +109,23 @@ function updateBalance(){
 }
 
 async function fetchTransactions(){
-  return await fetch('http://localhost:3000/transactions').then(res => res.json())
+  return await fetch('http://localhost:3000/protected/transactions', {
+    method: 'GET',
+    headers: { 'Authorization': `Bearer ${token}` }
+  }).then(res => res.json())
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   setup()
 })
 
-const form = document.querySelector('form')
+const form = document.querySelector('.form')
 
 form.addEventListener('submit', async (ev) => {
   ev.preventDefault()
   
   const id = document.querySelector('#id').value
-  const name = document.querySelector('#name').value
+  const name = document.querySelector('#nomeTransacao').value
   let amount = parseFloat(document.querySelector('#amount').value)
   const entrada = document.getElementById("entrada")
 
@@ -144,40 +145,40 @@ form.addEventListener('submit', async (ev) => {
 
   if (id){
     const response = await fetch(`http://localhost:3000/transactions/${id}`, {
-    method: 'PUT',
-    body: JSON.stringify({ name, amount , checkEntrada, checkSaida }),
-    headers: {
-      'Content-Type': 'application/json'
-    }
-    
-  })
-  const transaction = await response.json()
-  const indexToRemove = transactions.findIndex((t) => t.id == id)
-  transactions.splice(indexToRemove, 1, transaction)
-  document.querySelector(`#transaction-${id}`).remove()
-  renderTransaction(transaction)
-  document.querySelector("#id").value = ''
+      method: 'PUT',
+      body: JSON.stringify({ name, amount , checkEntrada, checkSaida }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+
+    const transaction = await response.json()
+    const indexToRemove = transactions.findIndex((t) => t.id == id)
+    transactions.splice(indexToRemove, 1, transaction)
+    document.querySelector(`#transaction-${id}`).remove()
+    renderTransaction(transaction)
+    document.querySelector("#id").value = ''
   } else {
-    const response = await fetch('http://localhost:3000/transactions', {
-    method: 'POST',
-    body: JSON.stringify({ user_id, name, type, amount }),
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  })
-  const transaction = await response.json()
-  transactions.push(transaction)
-  renderTransaction(transaction)
+    const response = await fetch('http://localhost:3000/protected/create-transaction', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+      body: JSON.stringify({ user_id: sessao.id, name, type, amount })
+    })
+    
+    const transaction = await response.json()
+    transactions.push(transaction)
+    renderTransaction(transaction)
   }
   ev.target.reset()
   updateBalance()
+  setup()
 })
 
 async function setup(){
   const results = await fetchTransactions()
-  transactions.push(...results)
-  
+
+  transactions = results
+  console.log(transactions)
   transactions.forEach(renderTransaction)
   updateBalance()
 }
-

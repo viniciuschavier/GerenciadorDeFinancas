@@ -18,9 +18,10 @@
   <div class="container text-center" data-bs-theme="dark">
     <div class="row">
       <div class="col">
-        <div class="form">
+        <form class="form">
           <h2>Nova Transação</h2>
             <div class="input-transacao">
+              <input type="hidden" id="id" name="id">
               <input type="text" placeholder="Nome da Transação" id="nomeTransacao" class="input-underline" required />
               <input class="input-underline" type="number" placeholder="Valor da Transação" name="amount" id="amount" min="0" oninput="validity.valid||(value='');">
             </div>
@@ -35,7 +36,7 @@
             </div>
           </div>
           <button type="submit" class="btn btn-outline-primary">Salvar</button>
-        </div>
+        </form>
       </div>
       <div class="col">
         <div class="secao-transacao">
