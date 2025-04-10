@@ -6,6 +6,8 @@ const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY
 
 const protectedRouter = express.Router();
 
+// POST /protected/create-transaction
+// Rota para criar uma nova transação
 protectedRouter.post('/create-transaction', async (req, res) => {
   const user_id = req.usuario.id;
   const { name, type, amount } = req.body;
@@ -23,6 +25,8 @@ protectedRouter.post('/create-transaction', async (req, res) => {
   res.status(201).json(data);
 });
 
+// GET /protected/transactions
+// Rota para buscar transações do usuário autenticado
 protectedRouter.get('/transactions', async (req, res) => {
   const user_id = req.usuario.id;
 
@@ -36,7 +40,45 @@ protectedRouter.get('/transactions', async (req, res) => {
     return res.status(500).json({ error: 'Erro ao buscar transações.' });
   }
 
-  res.json(data);
+  res.status(200).json(data);
+});
+
+// PUT /protected/edit-transaction/:id
+// Rota para editar uma transação existente
+protectedRouter.put('/edit-transaction/:id', async (req, res) => {
+  const { id } = req.params;
+  const { name, type, amount } = req.body;
+
+  const { data, error } = await supabase
+    .from('transactions')
+    .update({ name, type, amount })
+    .eq('id', id)
+    .select();
+
+  if (error) {
+    console.error(error.message)
+    return res.status(500).json({ error: 'Erro ao editar transação.' });
+  }
+
+  res.status(200).json({ message: "Transações atualizadas com sucesso!", data});
+});
+
+//DELETE /protected/delete-transaction/:id
+// Rota para deletar uma transação existente
+protectedRouter.delete('/delete-transaction/:id', async (req, res) => {
+  const { id } = req.params;
+
+  const { error } = await supabase
+    .from('transactions')
+    .delete()
+    .eq('id', id);
+
+  if (error) {
+    console.error(error.message)
+    return res.status(500).json({ message: 'Erro ao deletar transação.' });
+  }
+
+  res.status(200).json({ message: 'Transação deletada com sucesso!' });
 });
 
 module.exports = protectedRouter;

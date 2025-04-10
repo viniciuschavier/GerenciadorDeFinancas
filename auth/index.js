@@ -69,8 +69,10 @@ function createEditTransactionButton(transaction){
       let converterPositivo = Math.abs(transaction.amount) * 2
       copyAmountValue += converterPositivo
       document.querySelector('#amount').value = copyAmountValue
+      document.getElementById('saida').checked = true
     } else {
       document.querySelector('#amount').value = transaction.amount
+      document.getElementById('entrada').checked = true
     }
   })
   return editBtn
@@ -80,8 +82,13 @@ function createDeleteTransactionButton(id){
   const deleteBtn = document.createElement('button')
   deleteBtn.classList.add('delete-btn')
   deleteBtn.textContent = 'Excluir'
+
   deleteBtn.addEventListener('click', async () => {
-    await fetch(`http://localhost:3000/transactions/${id}`, { method: 'DELETE' })
+    const response = await fetch(`http://localhost:3000/protected/delete-transaction/${id}`, { 
+      method: 'DELETE',
+      headers: { 'Authorization': `Bearer ${token}` }
+    }).then(res => res.json());
+
     deleteBtn.parentElement.remove()
     const indexToRemove = transactions.findIndex((t) => t.id === id)
     transactions.splice(indexToRemove, 1)
@@ -98,7 +105,7 @@ function renderTransaction(transaction){
   const deleteBtn = createDeleteTransactionButton(transaction.id)
 
   container.append(title, amount, editBtn, deleteBtn)
-  document.querySelector('#transitions').appendChild(container)
+  document.getElementById('transactions').appendChild(container)
 }
 
 function updateBalance(){
@@ -129,56 +136,49 @@ form.addEventListener('submit', async (ev) => {
   let amount = parseFloat(document.querySelector('#amount').value)
   const entrada = document.getElementById("entrada")
 
-  let checkEntrada = false
-  let checkSaida = false
   let type
 
   if(entrada.checked){
-    checkEntrada = true
     type = "Entrada"
   }else{
     let converterNegativo = amount * 2
     amount -= converterNegativo
-    checkSaida = true
     type = "Saida"
   }
 
   if (id){
-    const response = await fetch(`http://localhost:3000/transactions/${id}`, {
+    const response = await fetch(`http://localhost:3000/protected/edit-transaction/${id}`, {
       method: 'PUT',
-      body: JSON.stringify({ name, amount , checkEntrada, checkSaida }),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+      body: JSON.stringify({ name, type, amount })
+    }).then(res => res.json())
 
-    const transaction = await response.json()
+    const transactionUpdated = response.data[0]
     const indexToRemove = transactions.findIndex((t) => t.id == id)
-    transactions.splice(indexToRemove, 1, transaction)
-    document.querySelector(`#transaction-${id}`).remove()
-    renderTransaction(transaction)
+    transactions.splice(indexToRemove, 1, transactionUpdated)
+    document.getElementById(id).remove()
+    renderTransaction(transactionUpdated)
     document.querySelector("#id").value = ''
   } else {
     const response = await fetch('http://localhost:3000/protected/create-transaction', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
       body: JSON.stringify({ user_id: sessao.id, name, type, amount })
-    })
+    }).then(res => res.json())
     
-    const transaction = await response.json()
+    const transaction = response[0]
+    
     transactions.push(transaction)
     renderTransaction(transaction)
   }
   ev.target.reset()
   updateBalance()
-  setup()
 })
 
 async function setup(){
   const results = await fetchTransactions()
 
   transactions = results
-  console.log(transactions)
   transactions.forEach(renderTransaction)
   updateBalance()
 }
