@@ -55,7 +55,7 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
     const sessao = {
       token: result.token
     }
-    console.log(result)
+    
     localStorage.setItem('sessao', JSON.stringify(sessao));
     window.location.href = result.redirect;
   } else {

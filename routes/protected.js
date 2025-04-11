@@ -18,11 +18,10 @@ protectedRouter.post('/create-transaction', async (req, res) => {
     .select();
 
   if (error) {
-    console.error(error.message)
     return res.status(500).json({ error: 'Erro ao criar transação.' });
   }
 
-  res.status(201).json(data);
+  res.status(201).json({ message: "Transação salva com sucesso!", data });
 });
 
 // GET /protected/transactions
@@ -36,7 +35,6 @@ protectedRouter.get('/transactions', async (req, res) => {
     .eq('user_id', user_id);
 
   if (error) {
-    console.error(error.message)
     return res.status(500).json({ error: 'Erro ao buscar transações.' });
   }
 
@@ -56,11 +54,10 @@ protectedRouter.put('/edit-transaction/:id', async (req, res) => {
     .select();
 
   if (error) {
-    console.error(error.message)
-    return res.status(500).json({ error: 'Erro ao editar transação.' });
+    return res.status(500).json({ error: 'Erro ao atualizar transação.' });
   }
 
-  res.status(200).json({ message: "Transações atualizadas com sucesso!", data});
+  res.status(200).json({ message: "Transação atualizada com sucesso!", data});
 });
 
 //DELETE /protected/delete-transaction/:id
@@ -74,8 +71,7 @@ protectedRouter.delete('/delete-transaction/:id', async (req, res) => {
     .eq('id', id);
 
   if (error) {
-    console.error(error.message)
-    return res.status(500).json({ message: 'Erro ao deletar transação.' });
+    return res.status(500).json({ error: 'Erro ao deletar transação.' });
   }
 
   res.status(200).json({ message: 'Transação deletada com sucesso!' });
