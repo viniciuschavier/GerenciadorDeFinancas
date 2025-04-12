@@ -1,9 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family:  "Poppins", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 body {
@@ -59,15 +60,15 @@ h1, p{
   z-index: 1;
 }
 
-/* Alertas personalizados para tema escuro */
 .alert-dark-success {
-  background-color: #157347cc; /* verde escuro com transparência */
+  background-color: #157347cc;
   color: #fff;
   border: 1px solid #157347;
+  
 }
 
 .alert-dark-danger {
-  background-color: #bb2d3bcc; /* vermelho escuro com transparência */
+  background-color: #bb2d3bcc;
   color: #fff;
   border: 1px solid #bb2d3b;
 }

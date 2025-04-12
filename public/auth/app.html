@@ -7,10 +7,10 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../css/app.css">
 </head>
 <body>
-  <nav class="navbar navbar-dark px-4">
+  <nav class="navbar navbar-dark px-4" id="inicio-pagina">
     <a class="navbar-brand" href="index.html">Finanças</a>
     <div class="ms-auto d-flex align-items-center gap-3">
       <span id="boasVindas" class="text-white"></span>
@@ -18,14 +18,15 @@
     </div>
   </nav>
   <div id="alert-container" class="alert-container"></div>
+
   <div class="container text-center" data-bs-theme="dark">
     <div class="row justify-content-center align-items-start mt-5">
       <div class="col col-md-5 md-5">
-        <form class="form p-4 rounded shadow bg-custom">
+        <form class="form p-4 rounded shadow bg-custom" id="form-transacao">
           <h2 class="mb-4">Nova Transação</h2>
             <div class="input-transacao mb-3">
               <input type="hidden" id="id" name="id">
-              <input type="text" placeholder="Nome da Transação" id="nomeTransacao" class="input-underline" required />
+              <input type="text" placeholder="Nome da Transação" id="nomeTransacao" class="input-underline" required autocomplete="off"/>
               <input class="input-underline" type="number" placeholder="Valor da Transação" name="amount" id="amount" min="0" oninput="validity.valid||(value='');">
             </div>
           <div class="checkbox my-3">
@@ -52,6 +53,6 @@
     </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-  <script src="index.js" defer></script>
+  <script src="../js/index.js" defer></script>
 </body>
 </html>

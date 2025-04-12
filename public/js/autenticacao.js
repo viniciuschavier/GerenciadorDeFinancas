@@ -24,19 +24,22 @@ document.getElementById('register-form').addEventListener('submit', async (e) =>
 
   const result = await response.json();
 
-  msg.classList.remove('d-none', 'alert-dark-danger', 'alert-dark-success');
+  msg.classList.remove('d-none', 'alert-dark-danger', 'alert-dark-success', 'alert-show');
   if (response.status === 201) {
     msg.classList.add('alert-dark-success');
     msg.textContent = result.message;
     setTimeout(() => container.classList.remove('right-panel-active'), 2500);
   } else {
-    msg.classList.add('alert');
-    msg.classList.add('alert-dark-danger');
+    msg.classList.add('alert', 'alert-dark-danger');
     msg.textContent = result.error || 'Erro desconhecido';
+
+    setTimeout(() => msg.classList.add('d-none'), 3000);
   }
+  
 });
 
 //LOGIN
+const msgLogin = document.getElementById('result');
 document.getElementById('login-form').addEventListener('submit', async (e) => {
   e.preventDefault();
 
@@ -50,16 +53,16 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
   });
 
   const result = await response.json();
-
+  msgLogin.classList.remove('d-none', 'alert-dark-danger', 'alert-dark-success');
   if (response.ok) {
-    const sessao = {
-      token: result.token
-    }
-    
-    localStorage.setItem('sessao', JSON.stringify(sessao));
-    window.location.href = result.redirect;
+    msgLogin.classList.add('alert-dark-success');
+    msgLogin.textContent = result.message;
+    setTimeout(() => window.location.href = result.redirect, 1500);
   } else {
-    alert(result.error || 'Erro ao fazer login.');
+    console.log('entrou no else')
+    msgLogin.classList.add('alert');
+    msgLogin.classList.add('alert-dark-danger');
+    msgLogin.textContent = result.error || 'Erro desconhecido';
   }
 });
 

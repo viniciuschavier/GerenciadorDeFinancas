@@ -31,10 +31,6 @@ button#logoutBtn {
   color: white;
 }
 
-.container{
-  margin-top: 150px;
-}
-
 h2 {
   margin-bottom: 40px;
 }
@@ -60,6 +56,7 @@ h3{
 span {
   font-size: 20px;
   margin: 5px;
+  flex: 1 0;
 }
 
 .transaction {
@@ -71,8 +68,13 @@ span {
   padding-bottom: 1rem;
 }
 
+.transaction-info {
+  display: flex;
+  flex-direction: row;
+  flex: 1 0;
+}
+
 button {
-  background-color: #6bf394;
   border: 0;
   border-radius: 20px;
   font-size: .9rem;
@@ -94,7 +96,6 @@ button.btn {
 
 .transaction > span {
   flex: 1;
-  text-transform: uppercase;
 }
 
 .transaction-amount {
@@ -138,16 +139,14 @@ button.btn {
 .form {
   display: flex;
   flex-direction: column;
-  /*background-color: #151a23;*/
   padding: 2rem;
   border-radius: 10px;
-  /*box-shadow: 0 0 10px #1e2a38;*/
 }
 
 .input-underline {
   background: transparent;
   border: none;
-  border-bottom: 2px solid #6ca0f6;
+  border-bottom: 1px solid #165da3;
   outline: none;
   padding: 0.5rem;
   font-size: 20px;
@@ -163,11 +162,11 @@ button.btn {
 }
 
 .input-underline:focus {
-  border-bottom: 2px solid #3B9CFF;
-  box-shadow: 0 1px 0 0 #4a90e2;
+  border-bottom: 2px solid #165da3;
+  box-shadow: 0 4px 5px -5px #165da3;
 }
 
-.form-control, .btn{
+.btn{
   margin: 10px auto;
   width: 70%;
 }
@@ -260,7 +259,6 @@ body::-webkit-scrollbar-thumb{
   animation: highlightFade 1.5s ease-in-out;
 }
 
-
 @media (max-width: 1200px){
   .container{
     margin-top: 70px;
@@ -274,10 +272,6 @@ body::-webkit-scrollbar-thumb{
     width: 90%;
   }
 
-  span{
-    font-size: 15px;
-  }
-
   #balance, .font22{
     font-size: 20px;
   }
@@ -287,7 +281,44 @@ body::-webkit-scrollbar-thumb{
     margin-bottom: 100px;
   }
 
+  .transaction-amount {
+    margin-right: 0rem;
+    text-align: start;
+  }
+}
+
+@media (max-width: 768px) {
+  .p-4{
+    padding: .5rem !important;
+  }
+
+  span{
+    font-size: 15px;
+  }
+
+  .transaction {
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .transaction-info {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .transaction span,
+  .transaction-amount {
+    width: 100%;
+    text-align: left;
+  }
+
   .edit-btn, .delete-btn {
-    max-width: 100px;
+    width: auto;
+    margin-top: 5px;
+  }
+
+  span#boasVindas{
+    min-width: 0px;
   }
 }
