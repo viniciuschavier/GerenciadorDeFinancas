@@ -43,6 +43,7 @@ const userController = {
 
       res.json({ message: 'Login realizado com sucesso!', redirect:'/app' });
     } catch (error) {
+      console.log(error)
       res.status(500).json({ error: 'Erro ao fazer login.' });
     }
   }

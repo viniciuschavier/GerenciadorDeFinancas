@@ -1,5 +1,3 @@
-const bcrypt = require('bcrypt')
-const jwt = require('jsonwebtoken');
 const transactionModel = require('../models/transactionModel.js')
 
 const transactionController = {
