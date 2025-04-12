@@ -1,0 +1,324 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+*{
+  margin: 0px;
+  padding: 0px;
+}
+
+body{
+  background-color: #151b23;
+  color: #E0E6ED;
+  font-family:  "Poppins", sans-serif;
+  height: 100vh;
+}
+
+.navbar {
+  border-bottom: 1px solid #0d6efd55;
+}
+
+span#boasVindas {
+  font-size: 17px;
+  margin: 0px;
+  min-width: 100px;
+}
+
+button#logoutBtn {
+  width: 80px;
+}
+
+#logoutBtn:hover {
+  background-color: #0d6efd;
+  color: white;
+}
+
+h2 {
+  margin-bottom: 40px;
+}
+
+label, .form-check {
+  font-size: 20px;
+}
+
+p{
+  font-size: 20px;
+  text-align: left;
+  margin-left: 10px;
+}
+
+h3{
+  margin-top: 8px;
+  text-align: left;
+  margin-left: 16%;
+  font-size: 22px;
+  text-transform: uppercase;
+}
+
+span {
+  font-size: 20px;
+  margin: 5px;
+  flex: 1 0;
+}
+
+.transaction {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #39353b;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+}
+
+.transaction-info {
+  display: flex;
+  flex-direction: row;
+  flex: 1 0;
+}
+
+button {
+  border: 0;
+  border-radius: 20px;
+  font-size: .9rem;
+  padding: .5rem 1rem;
+  margin: 2px 5px;
+}
+
+button:hover {
+  cursor: pointer;
+  filter: brightness(0.9);
+}
+
+button.btn {
+  color: #fff;
+  transition: all 0.3s ease-in-out;
+  width: 50%;
+  padding: 10px;
+}
+
+.transaction > span {
+  flex: 1;
+}
+
+.transaction-amount {
+  margin-right: 4rem;
+  text-align: end;
+}
+
+.transaction-amount.credit, .labelEntrada, .saldoPositivo {
+  color: #6bf394;
+}
+
+.transaction-amount.debit, .labelSaida, .saldoNegativo {
+  color: #f64348;
+}
+
+#balance {
+  transition: all 0.4s ease;
+}
+
+.font22, #balance{
+  font-size: 23px;
+}
+
+.edit-btn {
+  background-color: #7bb4ff;
+  transition: all 0.3s ease-in-out;
+}
+
+.delete-btn {
+  background-color: #f64348;
+  transition: all 0.3s ease-in-out;
+}
+
+.edit-btn:hover {
+  background-color: #6ca0f6;
+}
+.delete-btn:hover {
+  background-color: #e74c3c;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  border-radius: 10px;
+}
+
+.input-underline {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #165da3;
+  outline: none;
+  padding: 0.5rem;
+  font-size: 20px;
+  margin: 20px 0px;
+  color: #fff;
+  width: 80%;
+}
+
+.input-underline::placeholder {
+  color: #fff;
+  font-size: 20px;
+  transition: all 0.3s ease;
+}
+
+.input-underline:focus {
+  border-bottom: 2px solid #165da3;
+  box-shadow: 0 4px 5px -5px #165da3;
+}
+
+.btn{
+  margin: 10px auto;
+  width: 70%;
+}
+
+.checkbox {
+  display: inline-block;
+  margin: 15px 0px;
+}
+
+body::-webkit-scrollbar {
+  width: 7px;
+}
+
+body::-webkit-scrollbar-thumb{
+  max-height: 50px;
+  background-color: gray;
+  border-radius: 50px;
+}
+
+.alert-container {
+  position: fixed;
+  top: 90px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.alert {
+  padding: 12px 20px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  color: white;
+  font-weight: 500;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transform: translateY(-10px);
+  animation: slideIn 0.4s forwards;
+}
+
+.alert.success {
+  background-color: #1e7e34;
+}
+
+.alert.error {
+  background-color: #e74c3c;
+}
+
+@keyframes slideIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.transactionAnimation {
+  animation: fadeSlideIn 1.5s ease forwards;
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+}
+
+.fade-out {
+  animation: fadeOut 0.4s forwards;
+}
+
+@keyframes highlightFade {
+  0% {
+    background-color: #3498db;
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+.transaction-updated {
+  animation: highlightFade 1.5s ease-in-out;
+}
+
+@media (max-width: 1200px){
+  .container{
+    margin-top: 70px;
+  }
+
+  .row {
+    flex-direction: column;
+  }
+
+  .input-underline {
+    width: 90%;
+  }
+
+  #balance, .font22{
+    font-size: 20px;
+  }
+  
+  .col{
+    min-width: 100%;
+    margin-bottom: 100px;
+  }
+
+  .transaction-amount {
+    margin-right: 0rem;
+    text-align: start;
+  }
+}
+
+@media (max-width: 768px) {
+  .p-4{
+    padding: .5rem !important;
+  }
+
+  span{
+    font-size: 15px;
+  }
+
+  .transaction {
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .transaction-info {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .transaction span,
+  .transaction-amount {
+    width: 100%;
+    text-align: left;
+  }
+
+  .edit-btn, .delete-btn {
+    width: auto;
+    margin-top: 5px;
+  }
+
+  span#boasVindas{
+    min-width: 0px;
+  }
+}
