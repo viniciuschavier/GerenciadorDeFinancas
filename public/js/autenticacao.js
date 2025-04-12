@@ -73,8 +73,6 @@ function ajustarLayoutResponsivo() {
 
   if (larguraTela < 868) {
     container.classList.add('mobile-mode');
-    signIn.classList.remove('active');
-    signUp.classList.add('active');
   } else {
     container.classList.remove('mobile-mode');
     signIn.style.display = '';
@@ -82,17 +80,23 @@ function ajustarLayoutResponsivo() {
   }
 }
 
-document.getElementById('mobileToRegister')?.addEventListener('click', function (e) {
+document.getElementById('mobileToRegister')?.addEventListener('click', (e) => {
   e.preventDefault();
+  console.log("disparou")
   document.querySelector('.sign-in-container').classList.remove('active');
   document.querySelector('.sign-up-container').classList.add('active');
 });
 
-document.getElementById('mobileToLogin')?.addEventListener('click', function (e) {
+document.getElementById('mobileToLogin')?.addEventListener('click', (e) => {
   e.preventDefault();
+  console.log("disparou")
   document.querySelector('.sign-up-container').classList.remove('active');
   document.querySelector('.sign-in-container').classList.add('active');
 });
 
 window.addEventListener('resize', ajustarLayoutResponsivo);
-window.addEventListener('load', ajustarLayoutResponsivo);
+window.addEventListener('load', () => {
+  document.querySelector('.sign-up-container').classList.remove('active');
+  document.querySelector('.sign-in-container').classList.add('active');
+  ajustarLayoutResponsivo();
+});
