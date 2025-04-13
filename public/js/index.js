@@ -204,7 +204,7 @@ function createDeleteTransactionButton(id){
   deleteBtn.classList.add('delete-btn');
 
   deleteBtn.addEventListener('click', async () => {
-    const response = await fetch(`https://gerenciadordefinancas-production.up.railway.app/delete-transaction/${id}`, { 
+    const response = await fetch(`https://gerenciadordefinancas-production.up.railway.app/protected/delete-transaction/${id}`, { 
       method: 'DELETE',
       credentials: 'include'
     }).then(res => res.json());
