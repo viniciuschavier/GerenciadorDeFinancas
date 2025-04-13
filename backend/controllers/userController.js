@@ -41,7 +41,7 @@ const userController = {
         maxAge:  2 * 60 * 60 * 1000 // 2 horas
       });
 
-      res.json({ message: 'Login realizado com sucesso!', redirect:'/app' });
+      res.json({ message: 'Login realizado com sucesso!' });
     } catch (error) {
       console.log(error)
       res.status(500).json({ error: 'Erro ao fazer login.' });
