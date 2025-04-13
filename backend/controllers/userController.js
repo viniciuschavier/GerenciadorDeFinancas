@@ -36,8 +36,8 @@ const userController = {
 
       res.cookie('token', token, {
         httpOnly: true,
-        secure: false,
-        sameSite: 'Strict',
+        secure: true,
+        sameSite: 'None',
         maxAge:  2 * 60 * 60 * 1000 // 2 horas
       });
 
