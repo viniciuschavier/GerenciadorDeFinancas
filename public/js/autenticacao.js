@@ -57,7 +57,7 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
   if (response.ok) {
     msgLogin.classList.add('alert-dark-success');
     msgLogin.textContent = result.message;
-    setTimeout(() => window.location.href = '/public/auth/app.html', 1500);
+    setTimeout(() => window.location.href = '/auth/app.html', 1500);
   } else {
     console.log('entrou no else')
     msgLogin.classList.add('alert');
