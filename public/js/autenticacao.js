@@ -16,7 +16,7 @@ document.getElementById('register-form').addEventListener('submit', async (e) =>
   const email = document.getElementById('register-email').value;
   const password = document.getElementById('register-password').value;
 
-  const response = await fetch('http://localhost:3000/auth/cadastro', {
+  const response = await fetch('https://gerenciadordefinancas-production.up.railway.app/auth/cadastro', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ username, email, password }),
@@ -46,7 +46,7 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
   const username = document.getElementById('login-username').value;
   const password = document.getElementById('login-password').value;
 
-  const response = await fetch('http://localhost:3000/auth/login', {
+  const response = await fetch('https://gerenciadordefinancas-production.up.railway.app/auth/login', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ username, password }),
@@ -57,7 +57,7 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
   if (response.ok) {
     msgLogin.classList.add('alert-dark-success');
     msgLogin.textContent = result.message;
-    setTimeout(() => window.location.href = result.redirect, 1500);
+    setTimeout(() => window.location.href = '/public/auth/app.html', 1500);
   } else {
     console.log('entrou no else')
     msgLogin.classList.add('alert');

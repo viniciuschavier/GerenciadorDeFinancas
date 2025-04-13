@@ -13,7 +13,7 @@ let transactions = [];
 async function logout(){
   localStorage.removeItem('id');
 
-  await fetch('/protected/logout', {
+  await fetch('https://gerenciadordefinancas-production.up.railway.app/protected/logout', {
     method: 'POST',
     credentials: 'include', // Necessário para enviar cookies de autenticação
   });
@@ -23,7 +23,7 @@ async function logout(){
 
 // Função para buscar as transações do usuario autenticado
 async function fetchTransactions(){
-  return await fetch('http://localhost:3000/protected/transactions', {
+  return await fetch('https://gerenciadordefinancas-production.up.railway.app/protected/transactions', {
     method: 'GET',
     credentials: 'include'
   }).then(res => res.json());
@@ -41,7 +41,7 @@ async function setup(){
 function verificarAutenticacao(){
   // Verifica se o usuario está autenticado
   // Se não estiver, o middleware redireciona para a página de login 
-  fetch('/auth/verificarAutenticacao', {
+  fetch('https://gerenciadordefinancas-production.up.railway.app/auth/verificarAutenticacao', {
       method: 'GET',
       credentials: 'include'
     })
@@ -88,7 +88,7 @@ form.addEventListener('submit', async (ev) => {
   }
 
   if (id){ // se id não estiver vazio, faz a atualização da transação
-    const response = await fetch(`http://localhost:3000/protected/edit-transaction/${id}`, {
+    const response = await fetch(`https://gerenciadordefinancas-production.up.railway.app/protected/edit-transaction/${id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       credentials: 'include',
@@ -116,7 +116,7 @@ form.addEventListener('submit', async (ev) => {
       document.querySelector("#id").value = '';
     } 
   } else { // se id estiver vazio, cria uma nova transação
-    const response = await fetch('/protected/create-transaction', {
+    const response = await fetch('https://gerenciadordefinancas-production.up.railway.app/protected/create-transaction', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       credentials: 'include',
@@ -204,7 +204,7 @@ function createDeleteTransactionButton(id){
   deleteBtn.classList.add('delete-btn');
 
   deleteBtn.addEventListener('click', async () => {
-    const response = await fetch(`http://localhost:3000/protected/delete-transaction/${id}`, { 
+    const response = await fetch(`https://gerenciadordefinancas-production.up.railway.app/delete-transaction/${id}`, { 
       method: 'DELETE',
       credentials: 'include'
     }).then(res => res.json());

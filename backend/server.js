@@ -13,7 +13,10 @@ const app = express();
 
 //app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: 'https://gerenciador-de-financas-eta.vercel.app/',
+  credentials: true
+}));
 app.use(cookieParser());
 
 app.use('/auth', authRouter);
