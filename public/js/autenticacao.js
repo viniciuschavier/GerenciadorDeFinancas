@@ -60,7 +60,6 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
     msgLogin.textContent = result.message;
     setTimeout(() => window.location.href = '/auth/app.html', 1500);
   } else {
-    console.log('entrou no else')
     msgLogin.classList.add('alert');
     msgLogin.classList.add('alert-dark-danger');
     msgLogin.textContent = result.error || 'Erro desconhecido';
@@ -83,14 +82,12 @@ function ajustarLayoutResponsivo() {
 
 document.getElementById('mobileToRegister')?.addEventListener('click', (e) => {
   e.preventDefault();
-  console.log("disparou")
   document.querySelector('.sign-in-container').classList.remove('active');
   document.querySelector('.sign-up-container').classList.add('active');
 });
 
 document.getElementById('mobileToLogin')?.addEventListener('click', (e) => {
   e.preventDefault();
-  console.log("disparou")
   document.querySelector('.sign-up-container').classList.remove('active');
   document.querySelector('.sign-in-container').classList.add('active');
 });
