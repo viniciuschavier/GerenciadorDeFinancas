@@ -29,7 +29,7 @@ document.getElementById('register-form').addEventListener('submit', async (e) =>
     msg.classList.add('alert-dark-success');
     msg.textContent = result.message;
     if(window.innerWidth < 868){
-      window.location.href = '/'
+      setTimeout(() => window.location.href = '/', 2500);
     }else{
       setTimeout(() => container.classList.remove('right-panel-active'), 2500);
     }
