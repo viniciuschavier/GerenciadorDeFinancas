@@ -42,26 +42,29 @@ function verificarAutenticacao(){
   // Verifica se o usuario está autenticado
   // Se não estiver, o middleware redireciona para a página de login 
   fetch('https://gerenciadordefinancas-production.up.railway.app/auth/verificarAutenticacao', {
-      method: 'GET',
-      credentials: 'include'
-    })
-    .then(res => res.json())
-    .then(data => {
-      if (data.usuario) {
-        const dataExpiracao = new Date(data.usuario.exp * 1000);
-        const agora = new Date();
-        const tempoRestante = dataExpiracao - agora;
+    method: 'GET',
+    credentials: 'include'
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.usuario) {
+      const dataExpiracao = new Date(data.usuario.exp * 1000);
+      const agora = new Date();
+      const tempoRestante = dataExpiracao - agora;
         
-        // Faz o logout quando o token expirar
-        setTimeout(() => {
-          alert("Sessão expirada. Faça login novamente.");
-          logout();
-        }, tempoRestante);
+      // Faz o logout quando o token expirar
+      setTimeout(() => {
+        alert("Sessão expirada. Faça login novamente.");
+        logout();
+      }, tempoRestante);
   
-        localStorage.setItem('id', data.usuario.id);
-        document.getElementById('boasVindas').innerText = `Olá, ${data.usuario.username}`;
-      }
-    });
+      localStorage.setItem('id', data.usuario.id);
+      document.getElementById('boasVindas').innerText = `Olá, ${data.usuario.username}`;
+    }else{
+      showAlert('É necessário fazer login para acessar a página.', 'error');
+      setTimeout(() => window.location.href = '/', 3200);
+    }
+  });
 }
 
 // Função para criar ou editar transações

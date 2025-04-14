@@ -5,7 +5,7 @@ const autenticarToken = (req, res, next) => {
   const token = req.cookies.token;
 
   // Verifica se o token foi fornecido
-  if (!token) return res.redirect('/');
+  if (!token) return res.status(401).json({ message: 'Token não fornecido.' });
 
   try {
     // Verifica se o token fornecido é válido
@@ -15,7 +15,7 @@ const autenticarToken = (req, res, next) => {
     next();
   } catch (error) {
     // Se o token não for válido, redireciona para a página de login
-    return res.redirect('/');
+    return res.status(401).json({ message: 'Token inválido.' });
   }
 }
 
