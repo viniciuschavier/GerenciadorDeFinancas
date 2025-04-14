@@ -28,14 +28,17 @@ document.getElementById('register-form').addEventListener('submit', async (e) =>
   if (response.status === 201) {
     msg.classList.add('alert-dark-success');
     msg.textContent = result.message;
-    setTimeout(() => container.classList.remove('right-panel-active'), 2500);
+    if(window.innerWidth < 868){
+      window.location.href = '/'
+    }else{
+      setTimeout(() => container.classList.remove('right-panel-active'), 2500);
+    }
   } else {
     msg.classList.add('alert', 'alert-dark-danger');
     msg.textContent = result.error || 'Erro desconhecido';
 
     setTimeout(() => msg.classList.add('d-none'), 3000);
   }
-  
 });
 
 //LOGIN

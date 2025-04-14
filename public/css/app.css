@@ -261,7 +261,7 @@ body::-webkit-scrollbar-thumb{
 
 @media (max-width: 1200px){
   .container{
-    margin-top: 70px;
+    margin-top: 80px;
   }
 
   .row {
@@ -278,7 +278,7 @@ body::-webkit-scrollbar-thumb{
   
   .col{
     min-width: 100%;
-    margin-bottom: 100px;
+    margin-bottom: 150px;
   }
 
   .transaction-amount {
@@ -288,6 +288,10 @@ body::-webkit-scrollbar-thumb{
 }
 
 @media (max-width: 768px) {
+  body{
+    height: 99vh;
+  }
+
   .p-4{
     padding: .5rem !important;
   }
