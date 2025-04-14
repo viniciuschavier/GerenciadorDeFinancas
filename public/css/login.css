@@ -249,7 +249,15 @@ button.ghost:hover {
 }
 
 @media (max-width: 868px) {
+  body{
+    height: 99vh;
+  }
+
   .switch-mobile {
     display: block;
+  }
+  
+  .form-container{
+    padding: 0 30px;
   }
 }

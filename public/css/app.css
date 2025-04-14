@@ -288,20 +288,12 @@ body::-webkit-scrollbar-thumb{
 }
 
 @media (max-width: 768px) {
-  body{
-    height: 99vh;
-  }
-
   .p-4{
     padding: .5rem !important;
   }
 
   span{
     font-size: 15px;
-  }
-
-  .form-container{
-    padding: 0 30px;
   }
 
   .transaction {
