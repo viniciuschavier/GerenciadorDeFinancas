@@ -300,6 +300,10 @@ body::-webkit-scrollbar-thumb{
     font-size: 15px;
   }
 
+  .form-container{
+    padding: 0 30px;
+  }
+
   .transaction {
     flex-wrap: nowrap;
     flex-direction: row;
