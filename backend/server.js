@@ -11,10 +11,15 @@ const port = process.env.PORT;
 
 const app = express();
 
+const allowedOrigins = [
+  "https://gerenciador-de-financas-eta.vercel.app",
+  "https://gerenciador-de-financas-q0e0o6sz5-vinicius-projects-a79e52ee.vercel.app"
+];
+
 //app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(cors({
-  origin: 'https://gerenciador-de-financas-q0e0o6sz5-vinicius-projects-a79e52ee.vercel.app',
+  origin: allowedOrigins,
   credentials: true
 }));
 app.use(cookieParser());
