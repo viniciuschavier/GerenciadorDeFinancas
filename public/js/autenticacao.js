@@ -1,3 +1,5 @@
+const API_URL = 'https://gerenciadordefinancas.onrender.com'
+
 const container = document.getElementById('container');
 const signUpButton = document.getElementById('signUp');
 const signInButton = document.getElementById('signIn');
@@ -16,7 +18,7 @@ document.getElementById('register-form').addEventListener('submit', async (e) =>
   const email = document.getElementById('register-email').value;
   const password = document.getElementById('register-password').value;
 
-  const response = await fetch('https://gerenciadordefinancas-production.up.railway.app/auth/cadastro', {
+  const response = await fetch(`${API_URL}/auth/cadastro`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ username, email, password }),
@@ -28,9 +30,9 @@ document.getElementById('register-form').addEventListener('submit', async (e) =>
   if (response.status === 201) {
     msg.classList.add('alert-dark-success');
     msg.textContent = result.message;
-    if(window.innerWidth < 868){
+    if (window.innerWidth < 868) {
       setTimeout(() => window.location.href = '/', 2500);
-    }else{
+    } else {
       setTimeout(() => container.classList.remove('right-panel-active'), 2500);
     }
   } else {
@@ -49,7 +51,7 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
   const username = document.getElementById('login-username').value;
   const password = document.getElementById('login-password').value;
 
-  const response = await fetch('https://gerenciadordefinancas-production.up.railway.app/auth/login', {
+  const response = await fetch(`${API_URL}/auth/login`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     credentials: 'include',
