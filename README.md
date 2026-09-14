@@ -6,7 +6,7 @@ Aplicação web para controle de finanças pessoais, desenvolvida como parte de 
 
 **Deploy:** [https://gerenciador-de-financas-eta.vercel.app](https://gerenciador-de-financas-eta.vercel.app)
 
-## ✨ Funcionalidades
+## 📌 Funcionalidades
 
 - Cadastro de transações (receitas e despesas)
 - Listagem e remoção de transações
@@ -27,6 +27,3 @@ Aplicação web para controle de finanças pessoais, desenvolvida como parte de 
 - Node.js
 - Express
 - Supabase (banco de dados)
- 
-## 📌 Observações
-Este projeto ainda está em evolução e aberto a sugestões e melhorias.
