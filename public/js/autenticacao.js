@@ -61,8 +61,11 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
   const result = await response.json();
   msgLogin.classList.remove('d-none', 'alert-dark-danger', 'alert-dark-success');
   if (response.ok) {
+    localStorage.setItem('token', result.token);
+
     msgLogin.classList.add('alert-dark-success');
     msgLogin.textContent = result.message;
+
     setTimeout(() => window.location.href = '/auth/app.html', 1500);
   } else {
     msgLogin.classList.add('alert');

@@ -10,14 +10,19 @@ document.getElementById('logoutBtn').addEventListener('click', logout);
 
 let transactions = [];
 
+function getToken() {
+  return localStorage.getItem('token');
+}
+
 // Função para fazer logout do usuario
 async function logout() {
   localStorage.removeItem('id');
+  localStorage.removeItem('token');
 
-  await fetch(`${API_URL}/protected/logout`, {
+  /*await fetch(`${API_URL}/protected/logout`, {
     method: 'POST',
     credentials: 'include', // Necessário para enviar cookies de autenticação
-  });
+  });*/
 
   window.location.href = '/';
 };
@@ -26,7 +31,10 @@ async function logout() {
 async function fetchTransactions() {
   return await fetch(`${API_URL}/protected/transactions`, {
     method: 'GET',
-    credentials: 'include'
+    headers: {
+      'Authorization': `Bearer ${getToken()}`
+    }
+    //credentials: 'include'
   }).then(res => res.json());
 }
 
@@ -44,7 +52,10 @@ function verificarAutenticacao() {
   // Se não estiver, o middleware redireciona para a página de login 
   fetch(`${API_URL}/auth/verificarAutenticacao`, {
     method: 'GET',
-    credentials: 'include'
+    //credentials: 'include'
+    headers: {
+      'Authorization': `Bearer ${getToken()}`
+    }
   })
     .then(res => res.json())
     .then(data => {
@@ -95,8 +106,8 @@ form.addEventListener('submit', async (ev) => {
   if (id) { // se id não estiver vazio, faz a atualização da transação
     const response = await fetch(`${API_URL}/protected/edit-transaction/${id}`, {
       method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      credentials: 'include',
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${getToken()}` },
+      //credentials: 'include',
       body: JSON.stringify({ name, type, amount })
     }).then(res => res.json())
     if (response.error) {
@@ -123,8 +134,8 @@ form.addEventListener('submit', async (ev) => {
   } else { // se id estiver vazio, cria uma nova transação
     const response = await fetch(`${API_URL}/protected/create-transaction`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      credentials: 'include',
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${getToken()}` },
+      //credentials: 'include',
       body: JSON.stringify({ user_id, name, type, amount })
     }).then(res => res.json());
 
@@ -211,7 +222,10 @@ function createDeleteTransactionButton(id) {
   deleteBtn.addEventListener('click', async () => {
     const response = await fetch(`${API_URL}/protected/delete-transaction/${id}`, {
       method: 'DELETE',
-      credentials: 'include'
+      headers: {
+        'Authorization': `Bearer ${getToken()}`
+      }
+      //credentials: 'include'
     }).then(res => res.json());
     if (response.error) {
       showAlert(response.error, 'error');

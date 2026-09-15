@@ -30,18 +30,18 @@ const userController = {
       const { data, error } = await userModel.getUser(username);
 
       const senhaValida = await bcrypt.compare(password, data[0].password);
-      if(!senhaValida) return res.status(400).json({ error: 'Username ou senha inválidos.' });
+      if (!senhaValida) return res.status(400).json({ error: 'Username ou senha inválidos.' });
 
       const token = jwt.sign({ id: data[0].id, username: data[0].username }, jwt_secret, { expiresIn: '2h' });
 
-      res.cookie('token', token, {
+      /*res.cookie('token', token, {
         httpOnly: true,
         secure: true,
         sameSite: 'None',
         maxAge:  2 * 60 * 60 * 1000 // 2 horas
-      });
+      });*/
 
-      res.json({ message: 'Login realizado com sucesso!' });
+      res.json({ message: 'Login realizado com sucesso!', token });
     } catch (error) {
       console.log(error)
       res.status(500).json({ error: 'Erro ao fazer login.' });
