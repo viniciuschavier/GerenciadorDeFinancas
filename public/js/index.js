@@ -2,7 +2,6 @@
 // e chama a função setup para carregar as transações
 document.addEventListener('DOMContentLoaded', () => {
   verificarAutenticacao();
-  setup();
 })
 
 const API_URL = 'https://gerenciadordefinancas.onrender.com'
@@ -62,6 +61,7 @@ function verificarAutenticacao() {
 
         localStorage.setItem('id', data.usuario.id);
         document.getElementById('boasVindas').innerText = `Olá, ${data.usuario.username}`;
+        setup()
       } else {
         showAlert('É necessário fazer login para acessar a página.', 'error');
         setTimeout(() => window.location.href = '/', 3200);
