@@ -8,7 +8,6 @@ const autenticarToken = (req, res, next) => {
 
   // Verifica se o token foi fornecido
   if (!token) {
-    console.log("token não recebido")
     return res.status(401).json({ message: 'Token não fornecido.' })
   };
 
@@ -20,7 +19,6 @@ const autenticarToken = (req, res, next) => {
     next();
   } catch (error) {
     // Se o token não for válido, redireciona para a página de login
-    console.log('TOKEN INVÁLIDO:', error);
     return res.status(401).json({ message: 'Token inválido.' });
   }
 }
